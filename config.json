@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "lines": [
+    [
+      "model",
+      "context_tokens",
+      "session_tokens",
+      "cost",
+      "lines_changed"
+    ],
+    [
+      "project",
+      "git_branch",
+      "five_hour_remaining",
+      "weekly_remaining",
+      "session_name",
+      "prompt_cache"
+    ]
+  ],
+  "separator": " | ",
+  "labels": {
+    "context_tokens": "ctx",
+    "five_hour_remaining": "5h",
+    "weekly_remaining": "w",
+    "session_tokens": "tok",
+    "prompt_cache": "cache"
+  },
+  "percentage_suffix": "",
+  "colors": {
+    "enabled": true,
+    "model": "cyan",
+    "label": "cyan",
+    "normal": "green",
+    "warning": "yellow",
+    "critical": "red",
+    "detail": "dim"
+  },
+  "remaining_thresholds": {
+    "warning_at_or_below": 30,
+    "critical_at_or_below": 15
+  }
+}

@@ -1,0 +1,13 @@
+*
+!.gitignore
+!LICENSE
+!README.md
+!statusline.py
+!test_statusline.py
+!config.json
+!scripts/
+!scripts/setup.sh
+!scripts/test_setup.py
+!hooks/
+!hooks/claude.json
+!hooks/codex.json

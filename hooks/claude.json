@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__SYNC_CMD__",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

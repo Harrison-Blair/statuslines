@@ -113,11 +113,11 @@ Code renders it directly because Claude sends session JSON to a command. Codex
 exposes fixed native footer fields, so `statusline.py` translates the same
 segment IDs into Codex's `[tui].status_line` setting.
 
-The normalized display is:
+With the committed `config.json`, Claude renders:
 
 ```text
-model: reasoning | context tokens / capacity | 5h remaining reset | weekly remaining reset
-project | git branch | session name | session tokens in / out | cost | +added -removed | cache: warm until 3:05pm
+Opus: high | ctx 24k/200k | tok 10k in / 1k out | $1.23 | +156 -23
+statuslines | main | 5h: 20% 3:05pm | w: 75% Thu 9:30am | status work | cache: warm until 3:05pm
 ```
 
 | Key | Meaning |
@@ -142,7 +142,7 @@ cover only the latest request.
 
 Quota percentages mean capacity remaining, followed by the local clock time the
 window resets (`3:05pm`, or `Thu 3:05pm` when not today). Claude renders
-context as a compact `24k / 200k` value. Codex maps that segment to its native
+context as a compact `24k/200k` value. Codex maps that segment to its native
 `used-tokens` and `context-window-size` fields. Provider fields that are
 unavailable are omitted.
 

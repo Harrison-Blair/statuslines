@@ -34,12 +34,12 @@ usage() {
   exit 2
 }
 
-# True when DIR is a clone of this repo: the layout is there, and git does not
-# report a different work-tree root (a copied setup.sh inside another project).
+# True when DIR is a clone of this repo: the layout is there, and DIR is the
+# root of a git work tree (not a plain copy, nor a setup.sh inside another project).
 looks_like_clone() {
   [ -n "$1" ] && [ -d "$1" ] || return 1
   [ -f "$1/scripts/setup.sh" ] && [ -f "$1/statusline.py" ] && [ -d "$1/hooks" ] || return 1
-  lc_top="$(git -C "$1" rev-parse --show-toplevel 2>/dev/null)" || return 0
+  lc_top="$(git -C "$1" rev-parse --show-toplevel 2>/dev/null)" || return 1
   [ "$(cd "$lc_top" && pwd -P)" = "$(cd "$1" && pwd -P)" ]
 }
 

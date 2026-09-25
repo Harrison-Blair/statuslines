@@ -387,6 +387,18 @@ class SetupTest(unittest.TestCase):
         self.assertIn("is not a clone", result.stderr)
         self.assertEqual(sorted(p.name for p in blocker.iterdir()), ["keep.txt", "scripts"])
 
+        # So is a plain copy with this repo's layout: only a git clone counts.
+        copy = self.home / "copy"
+        (copy / "scripts").mkdir(parents=True)
+        (copy / "hooks").mkdir()
+        (copy / "statusline.py").write_text("", encoding="utf-8")
+        (copy / "scripts" / "setup.sh").write_text('touch "$HOME/ran-copy"\n', encoding="utf-8")
+        env["STATUSLINES_HOME"] = str(copy)
+        result = subprocess.run([TEST_SH], input=script, env=env, capture_output=True, text=True, cwd=self.tmp)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("is not a clone", result.stderr)
+        self.assertFalse((self.home / "ran-copy").exists())
+
     def test_old_python_is_refused(self) -> None:
         self.harnesses()
         fake = self.tmp / "oldpy"
